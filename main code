@@ -1,0 +1,62 @@
+#include <DHT.h>
+#include <Wire.h> 
+#include <LiquidCrystal_I2C.h>
+
+#define DHTPIN 8
+#define DHTTYPE DHT11
+
+DHT dht(DHTPIN, DHTTYPE);
+LiquidCrystal_I2C lcd(0x27, 20, 4);
+
+const int sensorTXPin = 11;
+const int sensorRXPin = 10;
+
+int acd10_read_co2() {
+  int sensorValue = analogRead(sensorRXPin);
+  int co2_ppm = map(sensorValue, 0, 1023, 0, 5000);
+  return co2_ppm;
+}
+
+void setBacklightBrightness(int brightness) {
+  brightness = constrain(brightness, 0, 255);
+  lcd.setBacklight(brightness);
+}
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(A6, INPUT);
+  pinMode(A7, INPUT);
+  dht.begin();
+  lcd.init();
+  lcd.backlight();
+  lcd.begin(20, 4);
+  lcd.setBacklight(HIGH);
+  setBacklightBrightness(2);
+}
+
+void loop() {
+  int SensorValue = analogRead(A6);
+  int SensorValue1 = analogRead(A7);
+  float h = dht.readHumidity();
+  float t = dht.readTemperature();
+  int co2 = acd10_read_co2();
+
+  lcd.setCursor(0, 0);
+  lcd.print("Air Quality Index:");
+  lcd.setCursor(0, 1);
+  lcd.print("-------");
+  lcd.print(SensorValue1);
+  lcd.print("ppm-------");
+  lcd.setCursor(0, 2);
+  lcd.print("CO:");
+  lcd.print(SensorValue);
+  lcd.print(" CO2:");
+  lcd.print(co2);
+  lcd.setCursor(0, 3);
+  lcd.print("Temp ");
+  lcd.print(t);
+  lcd.print("C Hum ");
+  lcd.print(h);
+  
+  delay(2500);
+}
