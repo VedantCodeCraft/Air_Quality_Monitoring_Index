@@ -1,0 +1,28 @@
+In the "Air Quality Monitoring Index" project, the components are connected as follows:
+
+DHT11 (Temperature and Humidity Sensor):
+Connect the data pin of the DHT11 sensor to digital pin 8 on the Arduino Nano.
+
+MQ7 (Carbon Monoxide Sensor) and MQ135 (Air Quality Sensor):
+Connect the analog output pins of the MQ7 and MQ135 sensors to analog pins A6 and A7 on the Arduino Nano, respectively.
+
+ACD10 (Carbon Dioxide Sensor):
+Pin 1 (RX) of the ACD10 sensor to a digital pin (e.g., pin 11) on the Arduino Nano.
+Pin 2 (TX) of the ACD10 sensor to a digital pin (e.g., pin 10) on the Arduino Nano.
+Pin 3 (GND) of the ACD10 sensor to the ground (GND) pin on the Arduino Nano.
+Pin 4 (VCC) of the ACD10 sensor to the 5V pin on the Arduino Nano.
+
+20x4 LCD Display:
+Connect the SDA pin of the LCD display to the SDA (A4) pin on the Arduino Nano.
+Connect the SCL pin of the LCD display to the SCL (A5) pin on the Arduino Nano.
+Connect the VCC pin of the LCD display to the 5V pin on the Arduino Nano.
+Connect the GND pin of the LCD display to the ground (GND) pin on the Arduino Nano.
+
+Arduino Nano:
+Connect the Arduino Nano to your computer using a USB cable for programming and power.
+
+Power Supply:
+Ensure that all sensors and the LCD display are powered appropriately. The Arduino Nano can provide power to most components, but ensure that the total current draw does not exceed its capabilities.
+
+Breadboard and Jumper Wires:
+Use a breadboard and jumper wires to make the connections between the sensors, LCD display, and Arduino Nano.
